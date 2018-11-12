@@ -9,13 +9,14 @@ let app = express();
 
 app.use(bodyParser.json());
 
+//Post toDo EndPoint
 app.post('/toDos', (req, res) => {
 
-    toDo = new toDo({
+    let newToDo = new toDo({
         text: req.body.text
     });
 
-    toDo.save().then((doc)=>{
+    newToDo.save().then((doc)=>{
         res.send(doc);
     },(e)=>{
         res.status(400).send(e);
@@ -26,6 +27,8 @@ app.post('/toDos', (req, res) => {
 app.listen(3000, () => {
     console.log('Started on port 3000');
 })
+
+module.exports = {app};
 
 
 
